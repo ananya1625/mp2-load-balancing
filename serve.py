@@ -8,9 +8,10 @@ app = Flask(__name__)
 def main():
     global seed
     if request.method == 'POST':
-        subprocess.run(["python3", "stress-cpu.py"])
-    else:
-        return socket.gethostname()
+        subprocess.run(["python3", "stress_cpu.py"])
+    elif request.method == 'GET':
+        private_ip = socket.gethostbyname(socket.gethostname())
+        return f'Private IP address: {private_ip}\n', 200
 
 
 if __name__ == '__main__':
